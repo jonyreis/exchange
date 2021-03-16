@@ -1,14 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 
+import { useDispatch, useSelector } from 'react-redux'
+import { signIn, signUp } from './store/Auth.store'
+
+import { RootState } from './store'
+
 function App() {
+  const dispatch = useDispatch()
+
+  const counter = useSelector((state: RootState) => state.auth)
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
+        <button onClick={() => dispatch(signIn())}>Sum 1</button>
+        <button onClick={() => dispatch(signUp())}>Subtract 1</button>
+        <h1>{counter.counter}</h1>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
