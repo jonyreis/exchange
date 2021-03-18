@@ -10,6 +10,7 @@ import { IState } from '../../store'
 import { addUserAuth } from '../../store/modules/userAuth/actions'
 import { getBitcoin, getBritas } from './getApiFunctions'
 
+import { HomeContainer } from './styles'
 
 const Home: React.FC = () => {
   const userAuthenticated = useSelector<IState, IUser>((state) => state.userAuth.user);
@@ -49,10 +50,14 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <div>
-      <h1>Home</h1>
+    <HomeContainer>
+      <header>
+        <div className="container">
+          <h1>Exchange</h1>
       <button onClick={handleSignOut}>SIgn Out</button>
     </div>
+      </header>
+    </HomeContainer>
   )
 }
 
