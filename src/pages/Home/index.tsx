@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import appFire from '../../firebase'
@@ -6,9 +7,15 @@ import 'firebase/auth'
 
 import { IUser } from '../../store/modules/userAuth/types'
 import { IState } from '../../store'
+import { addUserAuth } from '../../store/modules/userAuth/actions'
+import { getBitcoin, getBritas } from './getApiFunctions'
+
 
 const Home: React.FC = () => {
   const userAuthenticated = useSelector<IState, IUser>((state) => state.userAuth.user);
+
+  const [britas, setBritas] = React.useState({})
+  const [bitcoin, setBitcoin] = React.useState({})
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -25,16 +32,26 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     console.log(userAuthenticated)
     appFire.auth().onAuthStateChanged(user => {
+      const json = JSON.stringify({ email: user?.email, password: user?.refreshToken });
       if (user) {
-        console.log(user.email)
-      } else {
+        dispatch(addUserAuth({
+          email: String(user.email),
+          password: user.refreshToken
+        }))
+        window.localStorage.setItem("persist:user", json);
       }
     })
+  }, [])
+
+  React.useEffect(() => {
+    getBritas(setBritas)
+    getBitcoin(setBitcoin)
   }, [])
 
   return (
     <div>
       <h1>Home</h1>
+      <button onClick={handleSignOut}>SIgn Out</button>
     </div>
   )
 }
