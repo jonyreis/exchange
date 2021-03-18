@@ -1,18 +1,23 @@
-import { createStore } from 'redux';
-import rootReducer from './modules/rootReducer';
+import { applyMiddleware, createStore } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { IUserAuthState } from './modules/userAuth/types';
+import thunk from 'redux-thunk';
 
+import { IUserAuthState } from './modules/userAuth/types';
+import rootReducer from './modules/rootReducer';
 export interface IState {
   userAuth: IUserAuthState;
 }
 
 const persistConfig = {
-  key: 'root',
+  key: 'user',
   storage,
+  whitelist: ["userAuth"]
 };
 
-const persist = persistReducer(persistConfig, rootReducer);
-export const store: any = createStore(persist);
-export const persistor = persistStore(store);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const middleware = applyMiddleware(thunk);
+const store: any = createStore(persistedReducer, middleware);
+const persistor = persistStore(store);
+
+export { store, persistor };
