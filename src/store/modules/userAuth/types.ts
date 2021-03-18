@@ -3,6 +3,6 @@ export interface IUser {
   password: string;
 }
 
-export interface IUsers {
-  users: IUser[];
+export interface IUserAuthState {
+  user: IUser;
 }
