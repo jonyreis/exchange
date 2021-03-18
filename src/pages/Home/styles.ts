@@ -26,4 +26,21 @@ export const HomeContainer = styled.div`
       }
     }
   }
+  main {
+    max-width: 1200px;
+    margin: 40px auto;
+    .currency {
+      -webkit-box-shadow: 4px 4px 8px 0px rgba(221,221,221,1);
+      -moz-box-shadow: 4px 4px 8px 0px rgba(221,221,221,1);
+      box-shadow: 4px 4px 8px 0px rgba(221,221,221,1);
+
+      width: 240px;
+      margin: 16px 0;
+      padding: 16px 32px;
+      h3 {
+        font-size: 16px;
+        margin-top: 4px;
+      }
+    }
+  }
 `
