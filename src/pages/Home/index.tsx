@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import appFire from '../../firebase'
 import 'firebase/auth'
@@ -9,6 +9,18 @@ import { IState } from '../../store'
 
 const Home: React.FC = () => {
   const userAuthenticated = useSelector<IState, IUser>((state) => state.userAuth.user);
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  function handleSignOut() {
+    appFire.auth().signOut()
+    dispatch(addUserAuth({
+      email: "",
+      password: ""
+    }))
+    history.push("/")
+  }
 
   React.useEffect(() => {
     console.log(userAuthenticated)
