@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
 
@@ -8,16 +9,25 @@ import appFire from '../../firebase'
 import 'firebase/auth'
 
 import { SignUpContainer } from '../styles'
+import { addUserAuth } from '../../store/modules/userAuth/actions'
 
 const SignIn: React.FC = () => {
 
   const history = useHistory();
 
+  const dispatch = useDispatch()
+
   const onSubmit = async (values: { email: string; password: string }) => {
     appFire
       .auth()
       .signInWithEmailAndPassword(values.email, values.password)
-      .then(() => history.push('/home'))
+      .then(() => {
+        dispatch(addUserAuth({
+          email: values.email,
+          password: values.password
+        }))
+        history.push('/home')
+      })
       .catch((error) => {
         switch (error.code) {
           case "auth/invalid-email":
