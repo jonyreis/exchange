@@ -1,26 +1,19 @@
-import { Reducer } from 'redux';
-import { IUserAuthState } from './types';
+import { Reducer } from 'redux'
 
-const INITIAL_STATE: IUserAuthState = {
-  user: {
-    password: '',
-    email: ''
-  },
-};
+const INITIAL_STATE = {}
 
-const userAuth: Reducer<IUserAuthState> = (state = INITIAL_STATE, action) => {
+const userAuth: Reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'ADD_USER_AUTH': {
-      const { user } = action.payload;
-
-      state.user = user;
-      return state;
+      return action.payload
     }
-
+    case 'REMOVE_USER_AUTH': {
+      return action.payload
+    }
     default: {
-      return state;
+      return state
     }
   }
-};
+}
 
-export default userAuth;
+export default userAuth
