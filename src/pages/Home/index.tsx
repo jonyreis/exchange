@@ -7,7 +7,7 @@ import 'firebase/auth'
 import ModalBuySell from '../../components/ModalBuySell'
 
 import { HomeContainer } from './styles'
-import { IBitcoin, IBritas } from './types'
+import Transactions from '../../components/Transactions'
 import Balances from '../../components/Balances'
 
 const Home: React.FC = () => {
@@ -37,40 +37,9 @@ const Home: React.FC = () => {
       </header>
       <main>
         <Balances />
-        <div className="currency-container">
-          <div className="currency">
-            <h2>Bitcoin</h2>
-            <h3>
-              {Number(bitcoin.buy).toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              })}
-            </h3>
-          </div>
-          <div className="currency">
-            <h2>Britas</h2>
-            <h3>
-              {britas &&
-                Number(britas.cotacaoCompra).toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL'
-                })}
-            </h3>
-          </div>
-          <div className="currency">
-            <h2>Reais</h2>
-            <h3>
-              {britas &&
-                Number(britas.cotacaoCompra).toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL'
-                })}
-            </h3>
-          </div>
-        </div>
+        <div className="buy-sell-transactions">
           <ModalBuySell />
-        <div className="container-transactions">
-          <div />
+          <Transactions />
         </div>
       </main>
     </HomeContainer>
