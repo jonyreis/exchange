@@ -174,7 +174,7 @@ const ModalBuySell: React.FC = () => {
           <label htmlFor="with">Com:</label>
           <select
             name="with"
-            onChange={(event: { currentTarget: { value: any } }) =>
+            onChange={(event: { currentTarget: { value: string } }) =>
               setWithCriptoSelected(event.currentTarget.value)
             }
           >
