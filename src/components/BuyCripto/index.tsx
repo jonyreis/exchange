@@ -38,8 +38,12 @@ const ModalBuySell: React.FC = () => {
     getBitcoin(setBitcoin)
   }, [])
 
-  function handleSubmit() {
+  function handleSubmit(): void {
     const newCase = `${buyCriptoSelected}-${withCriptoSelected}`
+
+    if (buyCriptoSelected === 'selecione') return
+    if (withCriptoSelected === 'selecione') return
+    if (inputAmount === '') return
 
     switch (newCase) {
       case 'bitcoin-real':
@@ -156,7 +160,7 @@ const ModalBuySell: React.FC = () => {
           <label htmlFor="cripto">Comprar:</label>
           <select
             name="cripto"
-            onChange={(event: { currentTarget: { value: any } }) =>
+            onChange={(event: { currentTarget: { value: string } }) =>
               setBuyCriptoSelected(event.currentTarget.value)
             }
           >
@@ -189,6 +193,7 @@ const ModalBuySell: React.FC = () => {
           <input
             onChange={e => setInputAmount(e.target.value)}
             value={inputAmount}
+            type="number"
           />
         </div>
 

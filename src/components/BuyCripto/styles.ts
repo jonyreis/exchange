@@ -55,6 +55,13 @@ export const BuySellContainer = styled.section`
   input {
     height: 40px;
   }
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
   .container-button {
     display: block;
     text-align: center;
