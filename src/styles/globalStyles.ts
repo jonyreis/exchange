@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
-import ObjectSans from './ObjectSans-Regular.otf';
+import ObjectSans from './ObjectSans-Regular.otf'
 
 export default createGlobalStyle`
   @font-face {
@@ -25,6 +25,6 @@ export default createGlobalStyle`
   ul, ol {
     list-style: none;
   }
-`;
+`
 
-export const colors = {};
+export const colors = {}
