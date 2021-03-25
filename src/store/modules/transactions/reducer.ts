@@ -111,6 +111,9 @@ const transactions: Reducer = (state = INITIAL_STATE, action) => {
       }
       return [obj, ...state]
     }
+    case 'SIGN_OUT_LOGS': {
+      return [{}]
+    }
     default: {
       return state
     }

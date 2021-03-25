@@ -22,6 +22,12 @@ const Home: React.FC = () => {
         password: ''
       }
     })
+    dispatch({
+      type: 'SIGN_OUT_BALANCES'
+    })
+    dispatch({
+      type: 'SIGN_OUT_LOGS'
+    })
   }
 
   return (

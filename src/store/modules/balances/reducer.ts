@@ -75,6 +75,13 @@ const balances: Reducer<IBalances> = (state = INITIAL_STATE, action) => {
       }
       return newState
     }
+    case 'SIGN_OUT_BALANCES': {
+      return {
+        britas: 0,
+        bitcoin: 0,
+        real: 100000
+      }
+    }
     default: {
       return state
     }
