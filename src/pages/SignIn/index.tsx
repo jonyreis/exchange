@@ -2,8 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
-import { FORM_ERROR } from 'final-form'
-import { composeValidators, required, minValue } from '../../utils/validations'
+import { required } from '../../utils/validations'
 
 import appFire from '../../firebase'
 import 'firebase/auth'
@@ -53,7 +52,7 @@ const SignIn: React.FC = () => {
       <h1>Exchange</h1>
       <Form
         onSubmit={onSubmit}
-        render={({ submitError, handleSubmit, submitting }) => (
+        render={({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             <Field name="email" validate={required}>
               {({ input, meta }) => (
@@ -72,10 +71,7 @@ const SignIn: React.FC = () => {
                 </div>
               )}
             </Field>
-            <Field
-              name="password"
-              validate={composeValidators(required, minValue(6))}
-            >
+            <Field name="password" validate={required}>
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="senha">Senha</label>

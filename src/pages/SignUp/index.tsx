@@ -2,12 +2,7 @@ import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
 
-import {
-  composeValidators,
-  required,
-  minValue,
-  isEmail
-} from '../../utils/validations'
+import { required, isEmail } from '../../utils/validations'
 
 import appFire from '../../firebase'
 import 'firebase/auth'
@@ -26,7 +21,6 @@ const SignUp: React.FC = () => {
         .auth()
         .createUserWithEmailAndPassword(values.email, values.password)
         .then(() => {
-          alert('Conta criada com sucesso!!')
           history.push('/')
         })
         .catch(err => {
@@ -58,9 +52,9 @@ const SignUp: React.FC = () => {
       <h1>Exchange</h1>
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, submitting, submitError }) => (
+        render={({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
-            <Field name="email" validate={composeValidators(required, isEmail)}>
+            <Field name="email" validate={isEmail}>
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="email">Email</label>
@@ -74,10 +68,7 @@ const SignUp: React.FC = () => {
                 </div>
               )}
             </Field>
-            <Field
-              name="password"
-              validate={composeValidators(required, minValue(6))}
-            >
+            <Field name="password" validate={required}>
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="senha">Senha</label>
@@ -91,10 +82,7 @@ const SignUp: React.FC = () => {
                 </div>
               )}
             </Field>
-            <Field
-              name="confirm"
-              validate={composeValidators(required, minValue(6))}
-            >
+            <Field name="confirm" validate={required}>
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="confirmar">Cofirmar Senha</label>

@@ -7,7 +7,6 @@ const INITIAL_STATE: IUser = {
 }
 
 const userAuth: Reducer<IUser> = (state = INITIAL_STATE, action) => {
-  console.log(action.type, action.payload)
   switch (action.type) {
     case 'ADD_USER_AUTH': {
       return action.payload
