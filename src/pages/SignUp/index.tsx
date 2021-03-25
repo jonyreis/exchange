@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
-import { FORM_ERROR } from 'final-form'
 
 import {
   composeValidators,
@@ -17,6 +16,8 @@ import { SignUpContainer } from '../styles'
 import { IUser } from '../../store/modules/userAuth/types'
 
 const SignUp: React.FC = () => {
+  const [error, setError] = React.useState('')
+
   const history = useHistory()
 
   async function onSubmit(values: IUser) {
@@ -28,26 +29,25 @@ const SignUp: React.FC = () => {
           alert('Conta criada com sucesso!!')
           history.push('/')
         })
-        .catch(error => {
-          switch (error.code) {
+        .catch(err => {
+          switch (err.code) {
             case 'auth/email-already-in-use':
-              alert('Há uma conta cadastrada com este email!!')
+              setError('Email já está cadastrado!')
               break
             case 'auth/invalid-email':
-              alert('Email inválido!!')
+              setError('Email inválido!!')
               break
             case 'auth/weak-password':
-              alert('Senha fraca!!')
+              setError('Senha fraca!!')
               break
             default:
-              alert('Erro não identificado!!')
-              console.log('Erro não identificado')
+              setError('Erro não identificado!!')
               break
           }
         })
     }
     if (values.password !== values.confirm) {
-      return { [FORM_ERROR]: 'Confirmação de senha errada!' }
+      setError('Confirmação de senha errada!')
     }
 
     return false
@@ -108,7 +108,7 @@ const SignUp: React.FC = () => {
                 </div>
               )}
             </Field>
-            {submitError && <div className="error">{submitError}</div>}
+            {error && <div className="error">{error}</div>}
             <div className="buttons">
               <button type="submit" disabled={submitting}>
                 Cadastrar

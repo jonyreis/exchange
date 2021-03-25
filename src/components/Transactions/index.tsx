@@ -5,7 +5,6 @@ import { TransactionsContainer } from './styles'
 
 const Transactions: React.FC = () => {
   const { transactions } = useSelector((state: RootStateOrAny) => state)
-  console.log(transactions)
   return (
     <TransactionsContainer>
       <table>

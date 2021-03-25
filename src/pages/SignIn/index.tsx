@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
+import { FORM_ERROR } from 'final-form'
 import { composeValidators, required, minValue } from '../../utils/validations'
 
 import appFire from '../../firebase'
@@ -10,6 +11,7 @@ import 'firebase/auth'
 import { SignUpContainer } from '../styles'
 
 const SignIn: React.FC = () => {
+  const [error, setError] = React.useState('')
   const dispatch = useDispatch()
 
   const onSubmit = async (values: { email: string, password: string }) => {
@@ -25,21 +27,21 @@ const SignIn: React.FC = () => {
         })
         return res.user?.refreshToken
       })
-      .catch(error => {
-        switch (error.code) {
+      .catch(err => {
+        switch (err.code) {
           case 'auth/invalid-email':
-            alert('Email inválido!!')
+            setError('Email inválido')
             break
           case 'auth/user-disabled':
           case 'auth/user-not-found':
-            alert('Usuário não encontrado!!')
+            setError(err.message)
+            setError('Usuário não encontrado')
             break
           case 'auth/wrong-password':
-            alert('Senha errada!!')
+            setError('Senha está errada')
             break
           default:
-            alert('Erro não identificado!!')
-            console.log('Erro não identificado')
+            setError(err.message)
             break
         }
       })
@@ -88,7 +90,7 @@ const SignIn: React.FC = () => {
                 </div>
               )}
             </Field>
-            {submitError && <div className="error">{submitError}</div>}
+            {error && <div className="error">{error}</div>}
             <div className="buttons">
               <button type="submit" disabled={submitting}>
                 Entrar
