@@ -35,9 +35,19 @@ const Home: React.FC = () => {
         </div>
       </header>
       <main>
-        <Balances />
-        <div className="buy-sell-transactions">
-          <BuyCripto />
+        <div className="width-more-960">
+          <Balances />
+          <div className="buy-sell-transactions">
+            <BuyCripto />
+            <Transactions />
+          </div>
+        </div>
+
+        <div className="width-less-960">
+          <div className="balances-buycripto">
+            <Balances />
+            <BuyCripto />
+          </div>
           <Transactions />
         </div>
       </main>

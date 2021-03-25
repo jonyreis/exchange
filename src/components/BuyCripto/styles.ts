@@ -7,10 +7,22 @@ export const BuySellContainer = styled.section`
   flex: 1;
   flex-direction: column;
   justify-content: space-around;
-  width: 340px;
+  min-width: 340px;
+  max-width: 340px;
   height: 360px;
-  margin-top: 32px;
+  margin: 32px 8px 0;
   padding: 0 32px 32px;
+
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+  box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+
+  @media (max-width: 960px) {
+    margin: 0;
+  }
+  @media (max-width: 700px) {
+    min-width: 300px;
+  }
   .field {
     display: flex;
     justify-content: flex-start;

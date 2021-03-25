@@ -30,11 +30,37 @@ export const HomeContainer = styled.div`
   }
   main {
     max-width: 1200px;
-    margin: -100px auto 0;
+    margin: -80px auto 0;
+    padding: 0 16px;
+    @media (max-width: 700px) {
+      padding: 0 8px;
+    }
+    .width-more-960 {
+      @media (max-width: 960px) {
+        display: none;
+      }
+    }
+    .width-less-960 {
+      width: 100%;
+      @media (min-width: 961px) {
+        display: none;
+      }
+      .balances-buycripto {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 8px;
+        @media (max-width: 660px) {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
     .buy-sell-transactions {
-      display: grid;
-      grid-template-columns: 1fr 4fr;
-      gap: 90px;
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 960px) {
+        flex-direction: column;
+      }
     }
   }
 `

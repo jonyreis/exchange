@@ -4,7 +4,18 @@ export const TransactionsContainer = styled.section`
   background-color: #fff;
   border-radius: 16px;
   width: 770px;
-  margin-top: 20px;
+  margin: 32px 8px 0;
+
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+  box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+  @media (max-width: 1200px) {
+    max-width: 100%;
+  }
+  @media (max-width: 960px) {
+    margin: 32px 0 0;
+    width: 100%;
+  }
   table {
     width: 100%;
     thead tr,
