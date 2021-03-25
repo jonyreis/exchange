@@ -9,7 +9,6 @@ import Home from '../pages/Home'
 const Routes: React.FC = () => {
   const { user } = useSelector((state: RootStateOrAny) => state)
 
-  console.log(user)
   const publicRoute = (Component: React.FC) =>
     user.email ? () => <Redirect to="/home" /> : Component
 

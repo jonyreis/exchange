@@ -21,7 +21,8 @@ export const HomeContainer = styled.div`
       button {
         background-color: transparent;
         border: none;
-        color: #fff;
+        color: #000;
+        font-weight: 700;
         padding: 4px;
         cursor: pointer;
       }

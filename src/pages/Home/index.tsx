@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import appFire from '../../firebase'
 import 'firebase/auth'
 
-import ModalBuySell from '../../components/ModalBuySell'
+import BuyCripto from '../../components/BuyCripto'
 
 import { HomeContainer } from './styles'
 import Transactions from '../../components/Transactions'
@@ -14,7 +14,6 @@ const Home: React.FC = () => {
   const dispatch = useDispatch()
 
   function handleSignOut() {
-    console.log('sair')
     appFire.auth().signOut()
     dispatch({
       type: 'REMOVE_USER_AUTH',
@@ -31,14 +30,14 @@ const Home: React.FC = () => {
         <div className="container">
           <h1>Exchange</h1>
           <button type="button" onClick={handleSignOut}>
-            SIgn Out
+            Sign Out
           </button>
         </div>
       </header>
       <main>
         <Balances />
         <div className="buy-sell-transactions">
-          <ModalBuySell />
+          <BuyCripto />
           <Transactions />
         </div>
       </main>

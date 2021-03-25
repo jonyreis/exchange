@@ -11,7 +11,7 @@ interface ITransactions {
 
 const INITIAL_STATE: Array<ITransactions> = []
 
-const transaction: Reducer<Array<ITransactions>> = (
+const transactions: Reducer<Array<ITransactions>> = (
   state = INITIAL_STATE,
   action
 ) => {
@@ -42,4 +42,4 @@ const transaction: Reducer<Array<ITransactions>> = (
   }
 }
 
-export default transaction
+export default transactions

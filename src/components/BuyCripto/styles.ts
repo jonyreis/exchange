@@ -69,55 +69,9 @@ export const BuySellContainer = styled.section`
       width: 120px;
       margin: 0 8px;
       cursor: pointer;
-    }
-  }
-`
-export const TabContainer = styled.div`
-  background-color: #000;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  width: 340px;
-  height: 40px;
-  margin: -24px 0 0 -32px;
-
-  button {
-    background: none;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 14px;
-
-    height: 40px;
-    padding: 0;
-    outline: none;
-    cursor: pointer;
-    @media (max-width: 420px) {
-      font-size: 1.2rem;
-      line-height: 1.2rem;
-
-      height: 3.2rem;
-    }
-  }
-  .active {
-    background-color: #f4c71e;
-    border: none;
-    border-radius: 8px;
-    color: #000;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 14px;
-
-    padding: 6px;
-    outline: none;
-    &:focus {
-      outline: none;
+      &:disabled {
+        background-color: #eee;
+      }
     }
   }
 `
