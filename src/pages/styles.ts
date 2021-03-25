@@ -17,7 +17,7 @@ export const SignUpContainer = styled.div`
     color: #fff;
     font-size: 16px;
     font-weight: 700;
-    letter-spacing: .6px;
+    letter-spacing: 0.6px;
     width: 100%;
     height: 61px;
     margin-top: 8px;
@@ -61,18 +61,18 @@ export const SignUpContainer = styled.div`
     height: 51px;
     transition: 200ms;
     &::placeholder {
-        color: #666;
-        font-family: Object Sans, sans-serif;
-        font-size: 14px;
-        line-height: 18px;
-        text-align: center;
+      color: #666;
+      font-family: Object Sans, sans-serif;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
     }
     &:hover,
     &:focus {
       outline: none;
       box-shadow: 0 0 0 2px #000;
-      &::placeholder{
-        opacity: 0.5
+      &::placeholder {
+        opacity: 0.5;
       }
     }
   }

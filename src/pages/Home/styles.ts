@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
+  background-color: #f5f5f5;
   width: 100%;
   height: 100vh;
   header {
-    background-color: #000;
-    color: #fff;
-
+    background-color: #f4c71e;
+    color: #000;
+    height: 180px;
     padding: 16px 0;
     .container {
       display: flex;
@@ -28,19 +29,32 @@ export const HomeContainer = styled.div`
   }
   main {
     max-width: 1200px;
-    margin: 40px auto;
-    .currency {
-      -webkit-box-shadow: 4px 4px 8px 0px rgba(221,221,221,1);
-      -moz-box-shadow: 4px 4px 8px 0px rgba(221,221,221,1);
-      box-shadow: 4px 4px 8px 0px rgba(221,221,221,1);
-
-      width: 240px;
-      margin: 16px 0;
-      padding: 16px 32px;
-      h3 {
-        font-size: 16px;
-        margin-top: 4px;
+    margin: -100px auto 0;
+    .currency-container {
+      display: flex;
+      justify-content: space-between;
+      .currency {
+        background-color: #fff;
+        /* -webkit-box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+        -moz-box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1);
+        box-shadow: 4px 4px 8px 0px rgba(221, 221, 221, 1); */
+        border-radius: 16px;
+        width: 340px;
+        height: 140px;
+        padding: 16px 32px;
+        h2 {
+          font-size: 16px;
+        }
+        h3 {
+          font-size: 32px;
+          margin-top: 4px;
+        }
       }
+    }
+    .container-transactions {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
     }
   }
 `
