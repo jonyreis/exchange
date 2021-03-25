@@ -53,6 +53,28 @@ const balances: Reducer<IBalances> = (state = INITIAL_STATE, action) => {
       }
       return newState
     }
+    case 'BUY_REAL_WITH_BITCOIN': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+
+      const newState = {
+        britas: state.britas,
+        bitcoin: state.bitcoin - valorCompra,
+        real: state.real + amount
+      }
+      return newState
+    }
+    case 'BUY_REAL_WITH_BRITAS': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+
+      const newState = {
+        britas: state.britas - valorCompra,
+        bitcoin: state.bitcoin,
+        real: state.real + amount
+      }
+      return newState
+    }
     default: {
       return state
     }

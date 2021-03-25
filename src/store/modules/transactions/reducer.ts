@@ -16,7 +16,6 @@ const transactions: Reducer<Array<ITransactions>> = (
   state = INITIAL_STATE,
   action
 ) => {
-  console.log(action.type, action.payload)
   switch (action.type) {
     case 'LOG_BUY_BITCOIN_WITH_REAL': {
       const { price, amount } = action.payload
@@ -75,6 +74,36 @@ const transactions: Reducer<Array<ITransactions>> = (
         price: `BTC ${currency(price, 8)}`,
         amount: `${currency(amount, 0)} BRI`,
         total: `BTC ${currency(valorCompra, 8)}`
+      }
+      return [obj, ...state]
+    }
+    case 'LOG_BUY_REAL_WITH_BITCOIN': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+      const timestamp = Date.now()
+
+      const obj = {
+        key: timestamp,
+        date: timestamp,
+        coin: 'BRL/BTC',
+        price: `BTC ${currency(price, 8)}`,
+        amount: `${currency(amount, 0)} BRL`,
+        total: `BTC ${currency(valorCompra, 8)}`
+      }
+      return [obj, ...state]
+    }
+    case 'LOG_BUY_REAL_WITH_BRITAS': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+      const timestamp = Date.now()
+
+      const obj = {
+        key: timestamp,
+        date: timestamp,
+        coin: 'BRL/BRI',
+        price: `BRI ${currency(price, 2)}`,
+        amount: `${currency(amount, 0)} BRL`,
+        total: `BRI ${currency(valorCompra, 2)}`
       }
       return [obj, ...state]
     }

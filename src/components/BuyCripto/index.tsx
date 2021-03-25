@@ -110,6 +110,40 @@ const ModalBuySell: React.FC = () => {
         })
         setInputAmount('')
         break
+      case 'real-bitcoin':
+        dispatch({
+          type: 'BUY_REAL_WITH_BITCOIN',
+          payload: {
+            price: 1 / Number(bitcoin.buy),
+            amount: Number(inputAmount)
+          }
+        })
+        dispatch({
+          type: 'LOG_BUY_REAL_WITH_BITCOIN',
+          payload: {
+            price: 1 / Number(bitcoin.buy),
+            amount: Number(inputAmount)
+          }
+        })
+        setInputAmount('')
+        break
+      case 'real-britas':
+        dispatch({
+          type: 'BUY_REAL_WITH_BRITAS',
+          payload: {
+            price: 1 / Number(britas.cotacaoCompra),
+            amount: Number(inputAmount)
+          }
+        })
+        dispatch({
+          type: 'LOG_BUY_REAL_WITH_BRITAS',
+          payload: {
+            price: 1 / Number(britas.cotacaoCompra),
+            amount: Number(inputAmount)
+          }
+        })
+        setInputAmount('')
+        break
       default:
         break
     }
