@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Field } from 'react-final-form'
-
 import { composeValidators, required, minValue } from '../../utils/validations'
 
 import appFire from '../../firebase'
@@ -14,17 +13,17 @@ const SignIn: React.FC = () => {
   const dispatch = useDispatch()
 
   const onSubmit = async (values: { email: string, password: string }) => {
-    appFire
+    const response = await appFire
       .auth()
       .signInWithEmailAndPassword(values.email, values.password)
-      .then(auth => {
+      .then(res => {
         dispatch({
           type: 'ADD_USER_AUTH',
           payload: {
-            email: auth.user?.email,
-            password: auth.user?.refreshToken
+            email: res.user?.email
           }
         })
+        return res.user?.refreshToken
       })
       .catch(error => {
         switch (error.code) {
@@ -44,6 +43,7 @@ const SignIn: React.FC = () => {
             break
         }
       })
+    localStorage.setItem('exchange_token', String(response))
   }
 
   return (
