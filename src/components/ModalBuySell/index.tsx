@@ -1,13 +1,42 @@
 import React from 'react'
-
+import { useDispatch } from 'react-redux'
 import { Form, Field } from 'react-final-form'
+import { currency } from '../../utils/currency'
+
+import { getBitcoin, getBritas } from './getApiFunctions'
 
 import { BuySellContainer, TabContainer } from './styles'
+import { IBitcoin, IBritas } from './types'
 
 const ModalBuySell: React.FC = () => {
   const [buttonA, setButtonA] = React.useState<'' | 'active'>('active')
   const [buttonB, setButtonB] = React.useState<'' | 'active'>('')
   const [isSelect, setIsSelect] = React.useState(true)
+
+  const [inputAmount, setInputAmount] = React.useState('')
+
+  const [britas, setBritas] = React.useState<IBritas>({
+    cotacaoCompra: 0,
+    cotacaoVenda: 0,
+    dataHoraCotacao: ''
+  })
+  const [bitcoin, setBitcoin] = React.useState<IBitcoin>({
+    buy: '',
+    date: 0,
+    high: '',
+    last: '',
+    low: '',
+    open: '',
+    sell: '',
+    vol: ''
+  })
+
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    getBritas(setBritas)
+    getBitcoin(setBitcoin)
+  }, [])
 
   function handleSelectOn() {
     setIsSelect(true)
@@ -20,8 +49,23 @@ const ModalBuySell: React.FC = () => {
     setButtonB('active')
   }
 
-  function handleBuy() {
-    console.log('Comprar')
+  function handleBuy(values: { cripto: string }) {
+    switch (values.cripto) {
+      case 'bitcoin':
+        dispatch({
+          type: 'BUY_BITCOIN_WITH_REAL',
+          payload: { preco: bitcoin.buy, quantidade: Number(inputAmount) }
+        })
+        dispatch({
+          type: 'LOG_BUY_BITCOIN_WITH_REAL',
+          payload: { preco: bitcoin.buy, quantidade: Number(inputAmount) }
+        })
+        setInputAmount('')
+        break
+
+      default:
+        break
+    }
   }
 
   function handleSell() {
@@ -43,17 +87,21 @@ const ModalBuySell: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <div className="field">
               <label htmlFor="cripto">Comprar:</label>
-              <Field name="cripto" component="select">
-                <option>Bitcoin</option>
-                <option>Bitras</option>
-                <option>Real</option>
+              <Field name="cripto" component="select" defaultValue="bitcoin">
+                <option value="bitcoin">Bitcoin</option>
+                <option value="britas">Britas</option>
+                <option value="real">Real</option>
               </Field>
             </div>
             <Field name="quantidade">
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="quantidade">Quantidade:</label>
-                  <input {...input} type="number" />
+                  <input
+                    {...input}
+                    onChange={e => setInputAmount(e.target.value)}
+                    value={inputAmount}
+                  />
                 </div>
               )}
             </Field>
@@ -61,7 +109,7 @@ const ModalBuySell: React.FC = () => {
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="preco">Preço (BRL):</label>
-                  <input {...input} type="number" />
+                  <input value={currency(bitcoin.buy, 2)} />
                 </div>
               )}
             </Field>
@@ -69,7 +117,12 @@ const ModalBuySell: React.FC = () => {
               {({ input, meta }) => (
                 <div className="field">
                   <label htmlFor="total">Total:</label>
-                  <input {...input} type="number" />
+                  <input
+                    value={
+                      inputAmount &&
+                      currency(Number(bitcoin.buy) * Number(inputAmount), 2)
+                    }
+                  />
                 </div>
               )}
             </Field>
