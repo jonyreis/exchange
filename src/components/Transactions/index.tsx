@@ -23,16 +23,16 @@ const Transactions: React.FC = () => {
             (item: {
               key: number,
               date: React.ReactNode,
-              coin: any,
-              preco: string,
-              quantidade: any,
-              total: any
+              coin: string,
+              price: string,
+              amount: string,
+              total: string
             }) => (
               <tr key={item.key}>
                 <td>{item.date}</td>
                 <td>{item.coin}</td>
-                <td>{item.preco}</td>
-                <td>{item.quantidade}</td>
+                <td>{item.price}</td>
+                <td>{item.amount}</td>
                 <td>{item.total}</td>
               </tr>
             )

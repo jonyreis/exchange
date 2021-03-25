@@ -8,7 +8,6 @@ const INITIAL_STATE: IBalances = {
 }
 
 const balances: Reducer<IBalances> = (state = INITIAL_STATE, action) => {
-  console.log(action.type, action.payload)
   switch (action.type) {
     case 'BUY_BITCOIN_WITH_REAL': {
       const { price, amount } = action.payload
@@ -32,7 +31,25 @@ const balances: Reducer<IBalances> = (state = INITIAL_STATE, action) => {
       }
       return newState
     }
+    case 'BUY_BRITAS_WITH_REAL': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+
+      const newState = {
+        britas: state.britas + amount,
+        bitcoin: state.bitcoin,
         real: state.real - valorCompra
+      }
+      return newState
+    }
+    case 'BUY_BRITAS_WITH_BITCOIN': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+
+      const newState = {
+        britas: state.britas + amount,
+        bitcoin: state.bitcoin - valorCompra,
+        real: state.real
       }
       return newState
     }

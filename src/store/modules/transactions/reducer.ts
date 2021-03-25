@@ -2,10 +2,11 @@ import { Reducer } from 'redux'
 import { currency } from '../../../utils/currency'
 
 interface ITransactions {
-  date: string;
+  key: number;
+  date: number;
   coin: string;
-  preco: string;
-  quantidade: string;
+  price: string;
+  amount: string;
   total: string;
 }
 
@@ -47,6 +48,35 @@ const transactions: Reducer<Array<ITransactions>> = (
       }
       return [obj, ...state]
     }
+    case 'LOG_BUY_BRITAS_WITH_REAL': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+      const timestamp = Date.now()
+
+      const obj = {
+        key: timestamp,
+        date: timestamp,
+        coin: 'BRI/BRL',
+        price: `R$ ${currency(price, 2)}`,
+        amount: `${currency(amount, 0)} BRI`,
+        total: `R$ ${currency(valorCompra, 2)}`
+      }
+      return [obj, ...state]
+    }
+    case 'LOG_BUY_BRITAS_WITH_BITCOIN': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+      const timestamp = Date.now()
+
+      const obj = {
+        key: timestamp,
+        date: timestamp,
+        coin: 'BRI/BTC',
+        price: `BTC ${currency(price, 8)}`,
+        amount: `${currency(amount, 0)} BRI`,
+        total: `BTC ${currency(valorCompra, 8)}`
+      }
+      return [obj, ...state]
     }
     default: {
       return state
