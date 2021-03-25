@@ -1,34 +1,16 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
 import appFire from '../../firebase'
 import 'firebase/auth'
-
-import { getBitcoin, getBritas } from './getApiFunctions'
 
 import ModalBuySell from '../../components/ModalBuySell'
 
 import { HomeContainer } from './styles'
 import { IBitcoin, IBritas } from './types'
+import Balances from '../../components/Balances'
 
 const Home: React.FC = () => {
-  const [britas, setBritas] = React.useState<IBritas>({
-    cotacaoCompra: 0,
-    cotacaoVenda: 0,
-    dataHoraCotacao: ''
-  })
-  const [bitcoin, setBitcoin] = React.useState<IBitcoin>({
-    buy: '',
-    date: 0,
-    high: '',
-    last: '',
-    low: '',
-    open: '',
-    sell: '',
-    vol: ''
-  })
-
   const dispatch = useDispatch()
 
   function handleSignOut() {
@@ -43,11 +25,6 @@ const Home: React.FC = () => {
     })
   }
 
-  React.useEffect(() => {
-    getBritas(setBritas)
-    getBitcoin(setBitcoin)
-  }, [])
-
   return (
     <HomeContainer>
       <header>
@@ -59,6 +36,7 @@ const Home: React.FC = () => {
         </div>
       </header>
       <main>
+        <Balances />
         <div className="currency-container">
           <div className="currency">
             <h2>Bitcoin</h2>
@@ -90,7 +68,7 @@ const Home: React.FC = () => {
             </h3>
           </div>
         </div>
-        <ModalBuySell />
+          <ModalBuySell />
         <div className="container-transactions">
           <div />
         </div>
