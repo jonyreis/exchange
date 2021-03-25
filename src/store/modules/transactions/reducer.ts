@@ -1,9 +1,10 @@
 import { Reducer } from 'redux'
 import { currency } from '../../../utils/currency'
+import { date } from '../../../utils/date'
 
 interface ITransactions {
   key: number;
-  date: number;
+  date: string;
   coin: string;
   price: string;
   amount: string;
@@ -12,19 +13,17 @@ interface ITransactions {
 
 const INITIAL_STATE: Array<ITransactions> = []
 
-const transactions: Reducer<Array<ITransactions>> = (
-  state = INITIAL_STATE,
-  action
-) => {
+const transactions: Reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'LOG_BUY_BITCOIN_WITH_REAL': {
       const { price, amount } = action.payload
       const valorCompra = price * amount
       const timestamp = Date.now()
+      const dateNow = date()
 
       const obj = {
         key: timestamp,
-        date: timestamp,
+        date: dateNow,
         coin: 'BTC/BRL',
         price: `R$ ${currency(price, 2)}`,
         amount: `${amount} BTC`,
@@ -36,10 +35,11 @@ const transactions: Reducer<Array<ITransactions>> = (
       const { price, amount } = action.payload
       const valorCompra = price * amount
       const timestamp = Date.now()
+      const dateNow = date()
 
       const obj = {
         key: timestamp,
-        date: timestamp,
+        date: dateNow,
         coin: 'BTC/BRI',
         price: `BRI$ ${currency(price, 2)}`,
         amount: `${amount} BTC`,
@@ -51,10 +51,11 @@ const transactions: Reducer<Array<ITransactions>> = (
       const { price, amount } = action.payload
       const valorCompra = price * amount
       const timestamp = Date.now()
+      const dateNow = date()
 
       const obj = {
         key: timestamp,
-        date: timestamp,
+        date: dateNow,
         coin: 'BRI/BRL',
         price: `R$ ${currency(price, 2)}`,
         amount: `${currency(amount, 0)} BRI`,
@@ -66,10 +67,11 @@ const transactions: Reducer<Array<ITransactions>> = (
       const { price, amount } = action.payload
       const valorCompra = price * amount
       const timestamp = Date.now()
+      const dateNow = date()
 
       const obj = {
         key: timestamp,
-        date: timestamp,
+        date: dateNow,
         coin: 'BRI/BTC',
         price: `BTC ${currency(price, 8)}`,
         amount: `${currency(amount, 0)} BRI`,
@@ -81,10 +83,11 @@ const transactions: Reducer<Array<ITransactions>> = (
       const { price, amount } = action.payload
       const valorCompra = price * amount
       const timestamp = Date.now()
+      const dateNow = date()
 
       const obj = {
         key: timestamp,
-        date: timestamp,
+        date: dateNow,
         coin: 'BRL/BTC',
         price: `BTC ${currency(price, 8)}`,
         amount: `${currency(amount, 0)} BRL`,
@@ -96,10 +99,11 @@ const transactions: Reducer<Array<ITransactions>> = (
       const { price, amount } = action.payload
       const valorCompra = price * amount
       const timestamp = Date.now()
+      const dateNow = date()
 
       const obj = {
         key: timestamp,
-        date: timestamp,
+        date: dateNow,
         coin: 'BRL/BRI',
         price: `BRI ${currency(price, 2)}`,
         amount: `${currency(amount, 0)} BRL`,

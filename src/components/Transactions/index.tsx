@@ -5,6 +5,7 @@ import { TransactionsContainer } from './styles'
 
 const Transactions: React.FC = () => {
   const { transactions } = useSelector((state: RootStateOrAny) => state)
+
   return (
     <TransactionsContainer className="animeTop">
       <table>
@@ -21,7 +22,7 @@ const Transactions: React.FC = () => {
           {transactions.map(
             (item: {
               key: number,
-              date: React.ReactNode,
+              date: string,
               coin: string,
               price: string,
               amount: string,
