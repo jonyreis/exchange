@@ -39,19 +39,46 @@ const ModalBuySell: React.FC = () => {
   }, [])
 
   function handleSubmit() {
-    switch (buyCriptoSelected && withCriptoSelected) {
-      case 'bitcoin' && 'real':
+    const newCase = `${buyCriptoSelected}-${withCriptoSelected}`
+
+    switch (newCase) {
+      case 'bitcoin-real':
         dispatch({
           type: 'BUY_BITCOIN_WITH_REAL',
-          payload: { preco: bitcoin.buy, quantidade: Number(inputAmount) }
+          payload: {
+            price: Number(bitcoin.buy),
+            amount: Number(inputAmount)
+          }
         })
         dispatch({
           type: 'LOG_BUY_BITCOIN_WITH_REAL',
-          payload: { preco: bitcoin.buy, quantidade: Number(inputAmount) }
+          payload: {
+            price: Number(bitcoin.buy),
+            amount: Number(inputAmount)
+          }
         })
         setInputAmount('')
         break
-
+      case 'bitcoin-britas':
+        dispatch({
+          type: 'BUY_BITCOIN_WITH_BRITAS',
+          payload: {
+            price: Number(Number(bitcoin.buy) / Number(britas.cotacaoCompra)),
+            amount: Number(inputAmount)
+          }
+        })
+        dispatch({
+          type: 'LOG_BUY_BITCOIN_WITH_BRITAS',
+          payload: {
+            price: Number(Number(bitcoin.buy) / Number(britas.cotacaoCompra)),
+            amount: Number(inputAmount)
+          }
+        })
+        setInputAmount('')
+        break
+        })
+        setInputAmount('')
+        break
       default:
         break
     }

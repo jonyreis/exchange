@@ -18,23 +18,35 @@ const transactions: Reducer<Array<ITransactions>> = (
   console.log(action.type, action.payload)
   switch (action.type) {
     case 'LOG_BUY_BITCOIN_WITH_REAL': {
-      const { preco, quantidade } = action.payload
-      const valorCompra = preco * quantidade
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
       const timestamp = Date.now()
-      const date = new Date(timestamp)
 
       const obj = {
         key: timestamp,
         date: timestamp,
         coin: 'BTC/BRL',
-        preco: `R$ ${currency(preco, 2)}`,
-        quantidade: `${quantidade} BTC`,
+        price: `R$ ${currency(price, 2)}`,
+        amount: `${amount} BTC`,
         total: `R$ ${currency(valorCompra, 2)}`
       }
       return [obj, ...state]
     }
-    case 'REMOVE_USER_AUTH': {
-      return action.payload
+    case 'LOG_BUY_BITCOIN_WITH_BRITAS': {
+      const { price, amount } = action.payload
+      const valorCompra = price * amount
+      const timestamp = Date.now()
+
+      const obj = {
+        key: timestamp,
+        date: timestamp,
+        coin: 'BTC/BRI',
+        price: `BRI$ ${currency(price, 2)}`,
+        amount: `${amount} BTC`,
+        total: `BRI$ ${currency(valorCompra, 2)}`
+      }
+      return [obj, ...state]
+    }
     }
     default: {
       return state
