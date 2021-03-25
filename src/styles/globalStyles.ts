@@ -25,6 +25,16 @@ export default createGlobalStyle`
   ul, ol {
     list-style: none;
   }
-`
+  .animeTop {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: animeTop 0.5s forwards;
+}
 
-export const colors = {}
+@keyframes animeTop {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+`

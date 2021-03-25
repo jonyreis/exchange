@@ -9,7 +9,7 @@ const Balances: React.FC = () => {
   const { balances } = useSelector((state: RootStateOrAny) => state)
 
   return (
-    <BalancesContainer>
+    <BalancesContainer className="animeTop">
       <div className="currency">
         <h2>Bitcoin</h2>
         <h3>

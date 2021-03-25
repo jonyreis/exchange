@@ -155,7 +155,7 @@ const ModalBuySell: React.FC = () => {
 
   return (
     <BuySellContainer>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="animeTop">
         <div className="field">
           <label htmlFor="cripto">Comprar:</label>
           <select

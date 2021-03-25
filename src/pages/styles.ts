@@ -12,9 +12,9 @@ export const SignUpContainer = styled.div`
     font-size: 40px;
   }
   button {
-    background-color: #000;
+    background-color: #f4c71e;
     border: none;
-    color: #fff;
+    border-radius: 16px;
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.6px;
@@ -52,6 +52,7 @@ export const SignUpContainer = styled.div`
   }
   input {
     border: 1px solid #666;
+    border-radius: 16px;
     color: #000;
     font-size: 14px;
     line-height: 14px;
@@ -70,7 +71,8 @@ export const SignUpContainer = styled.div`
     &:hover,
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px #000;
+      border: 1px solid #f4c71e;
+      box-shadow: 0 0 0 2px #f4c71e;
       &::placeholder {
         opacity: 0.5;
       }

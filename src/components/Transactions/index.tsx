@@ -6,7 +6,7 @@ import { TransactionsContainer } from './styles'
 const Transactions: React.FC = () => {
   const { transactions } = useSelector((state: RootStateOrAny) => state)
   return (
-    <TransactionsContainer>
+    <TransactionsContainer className="animeTop">
       <table>
         <thead>
           <tr>

@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, submitting }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="animeTop">
             <Field name="email" validate={required}>
               {({ input, meta }) => (
                 <div className="field">
