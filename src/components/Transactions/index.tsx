@@ -19,6 +19,13 @@ const Transactions: React.FC = () => {
           </tr>
         </thead>
         <tbody>
+          <tr className="tr-less-660">
+            <td>Data</td>
+            <td>Criptomoeda</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+            <td>Total</td>
+          </tr>
           {transactions.map(
             (item: {
               key: number,

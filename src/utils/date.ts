@@ -7,5 +7,5 @@ export function date(): string {
   const minutes = hoje.getMinutes()
   const second = hoje.getSeconds()
 
-  return `${dd}-${mm}-${yyyy} ${hours}:${minutes}:${second}`
+  return `${dd}/${mm}/${yyyy}  ${hours}:${minutes}:${second}`
 }
