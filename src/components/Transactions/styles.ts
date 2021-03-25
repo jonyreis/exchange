@@ -16,6 +16,9 @@ export const TransactionsContainer = styled.section`
     margin: 32px 0 0;
     width: 100%;
   }
+  @media (max-width: 700px) {
+    margin: 60px 0;
+  }
   table {
     border: none;
     display: block;
@@ -42,7 +45,8 @@ export const TransactionsContainer = styled.section`
       }
     }
     tbody tr {
-      padding: 10px 0;
+      height: 36px;
+      align-items: center;
       &:nth-child(even) {
         background-color: #fff;
       }

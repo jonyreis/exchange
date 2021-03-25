@@ -4,6 +4,9 @@ export const HomeContainer = styled.div`
   background-color: #f5f5f5;
   width: 100%;
   height: 100vh;
+  @media (max-width: 660px) {
+    height: 170vh;
+  }
   header {
     background-color: #f4c71e;
     color: #000;

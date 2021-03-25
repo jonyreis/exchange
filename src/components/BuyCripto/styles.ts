@@ -58,10 +58,6 @@ export const BuySellContainer = styled.section`
         box-shadow: 0 0 0 1px #f4c71e;
         outline: none;
       }
-      @media (max-width: 420px) {
-        height: 32px;
-        padding: 8px;
-      }
     }
   }
   input {
